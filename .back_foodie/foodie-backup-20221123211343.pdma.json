@@ -4,7 +4,7 @@
   "avatar": "",
   "version": "4.2.0",
   "createdTime": "2022-11-20 20:45:08",
-  "updatedTime": "2022-11-20 20:45:08",
+  "updatedTime": "2022-11-23 21:13:35",
   "dbConns": [],
   "profile": {
     "default": {
@@ -4391,7 +4391,9 @@
       "defKey": "all-in-one",
       "defName": "",
       "relationType": "entity",
-      "canvasData": {},
+      "canvasData": {
+        "cells": []
+      },
       "id": "B19F6A71-30F0-40BD-BA9B-5DE469C33A11"
     }
   ],
@@ -4632,8 +4634,8 @@
       "type": "29D1CE08-4C35-4D2D-AAA9-23D93305B52E",
       "properties": {
         "driver_class_name": "com.mysql.cj.jdbc.Driver",
-        "url": "jdbc:mysql://127.0.0.1: 3306/are?characterEncoding=UTF-8&useSSL=false&useUnicode=true&serverTimezone=UTC",
-        "password": "fmx2022",
+        "url": "jdbc:mysql://127.0.0.1:3306/foodie_dev?useunicode=true&characterencoding=utf-8&zerodatetimebehavior=converttonull&autoreconnect=true&usessl=false&servertimezone=asia/shanghai",
+        "password": "mysql",
         "username": "root"
       }
     }

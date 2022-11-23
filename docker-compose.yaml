@@ -2,7 +2,7 @@ version: "3.2" # optional since v1.27.0
 services:
   mysql:
     container_name: "foodie-dev-mysql"
-    image: mysql:5.1.41
+    image: mysql:8.0.19
     ports:
       - "3306:3306"
     volumes:
