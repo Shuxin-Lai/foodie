@@ -1,6 +1,7 @@
 package com.imooc.exception;
 
 public class FoodieException extends RuntimeException {
+
   private final Integer status;
   private final String msg;
 

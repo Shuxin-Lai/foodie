@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class Constant {
+
   public static String SALT;
 
   @Value("${constant.salt}")

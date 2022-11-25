@@ -1,14 +1,14 @@
 package com.imooc.exception;
 
 import com.imooc.utils.JSONResult;
+import javax.validation.ConstraintViolationException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.validation.ConstraintViolationException;
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
   @ExceptionHandler(Exception.class)
   @ResponseBody
   public Object handleException(Exception e) {
@@ -19,7 +19,6 @@ public class GlobalExceptionHandler {
   @ExceptionHandler(ConstraintViolationException.class)
   @ResponseBody
   public Object handleValidationException(ConstraintViolationException e) {
-
     System.out.println("ConstraintViolationException: " + e);
     String message = e.getMessage();
     int i = message.indexOf(":");
