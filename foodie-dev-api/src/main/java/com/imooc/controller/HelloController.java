@@ -2,7 +2,9 @@ package com.imooc.controller;
 
 import com.imooc.mapper.StuMapper;
 import com.imooc.pojo.Stu;
+import com.imooc.utils.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,6 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class HelloController {
   @Autowired
   private StuMapper stuMapper;
+
+  @GetMapping("/test")
+  public Object test() {
+    return Constant.SALT;
+  }
 
   @GetMapping("/ping")
   public Object hello() {

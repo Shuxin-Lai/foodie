@@ -1,6 +1,8 @@
 package com.imooc.controller;
 
+import com.imooc.exception.FoodieExceptionEnum;
 import com.imooc.service.UserService;
+import com.imooc.utils.JSONResult;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -20,11 +22,13 @@ public class PassportController {
 
   @Valid
   @GetMapping("/usernameIsExist")
-  public int queryUsernameIsExists(@RequestParam @Length(max = 255, min = 3) String username) {
+  public Object queryUsernameIsExists(@RequestParam @Length(max = 255, min = 3, message =
+      FoodieExceptionEnum.PARA_ERROR_MSG) String username) {
+
     if (userService.queryUsernameIsExists(username)) {
-      return 500;
+      return JSONResult.success();
     }
 
-    return 200;
+    return JSONResult.error(FoodieExceptionEnum.USER_NOT_EXIST);
   }
 }
