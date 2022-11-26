@@ -5,10 +5,16 @@ import com.imooc.exception.FoodieExceptionEnum;
 import com.imooc.pojo.Users;
 import com.imooc.pojo.bo.UserBO;
 import com.imooc.pojo.bo.UserLoginBO;
+import com.imooc.pojo.vo.UserVO;
 import com.imooc.service.UserService;
+import com.imooc.utils.CookieUtils;
 import com.imooc.utils.JSONResult;
+import com.imooc.utils.JsonUtils;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -50,7 +56,11 @@ public class PassportController {
   }
 
   @GetMapping("/login")
-  public Object login(@Valid @RequestBody UserLoginBO userBO) throws Exception {
+  public Object login(
+    @Valid @RequestBody UserLoginBO userBO,
+    HttpServletRequest request,
+    HttpServletResponse response
+  ) throws Exception {
     Users user = userService.queryUserForLogin(
       userBO.getUsername(),
       userBO.getPassword()
@@ -58,6 +68,17 @@ public class PassportController {
     if (user == null) {
       throw new FoodieException(FoodieExceptionEnum.USERNAME_OR_PASSWORD_ERROR);
     }
-    return JSONResult.success(user);
+
+    UserVO userVO = new UserVO();
+    BeanUtils.copyProperties(user, userVO);
+
+    CookieUtils.setCookie(
+      request,
+      response,
+      "user",
+      JsonUtils.objectToJson(userVO),
+      true
+    );
+    return JSONResult.success(userVO);
   }
 }

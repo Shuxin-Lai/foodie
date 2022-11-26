@@ -9,4 +9,6 @@ public interface UserService {
   Users createUser(UserBO userBo);
 
   Users queryUserForLogin(String username, String password) throws Exception;
+
+  Users skipUserKeys(Users user);
 }

@@ -81,4 +81,12 @@ public class UserServiceImpl implements UserService {
     criteria.andEqualTo("password", encryptedPwd);
     return usersMapper.selectOneByExample(example);
   }
+
+  @Override
+  public Users skipUserKeys(Users user) {
+    user.setPassword(null);
+    user.setRealname(null);
+    user.setMobile(null);
+    return user;
+  }
 }
