@@ -1,5 +1,7 @@
 package com.imooc.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,9 +17,7 @@ public class Users {
      */
     private String username;
 
-    /**
-     * ;
-     */
+    @JsonIgnore
     private String password;
 
     /**
