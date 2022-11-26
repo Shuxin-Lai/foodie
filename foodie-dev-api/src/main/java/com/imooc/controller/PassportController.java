@@ -4,6 +4,7 @@ import com.imooc.exception.FoodieException;
 import com.imooc.exception.FoodieExceptionEnum;
 import com.imooc.pojo.Users;
 import com.imooc.pojo.bo.UserBO;
+import com.imooc.pojo.bo.UserLoginBO;
 import com.imooc.service.UserService;
 import com.imooc.utils.JSONResult;
 import javax.validation.Valid;
@@ -33,7 +34,7 @@ public class PassportController {
       return JSONResult.success();
     }
 
-    return JSONResult.error(FoodieExceptionEnum.USER_NOT_EXIST);
+    return JSONResult.success(FoodieExceptionEnum.USER_NOT_EXIST);
   }
 
   @PostMapping("/regist")
@@ -45,6 +46,18 @@ public class PassportController {
       throw new FoodieException(FoodieExceptionEnum.PASSWORD_NOT_EQUAL);
     }
     Users user = userService.createUser(userBO);
+    return JSONResult.success(user);
+  }
+
+  @GetMapping("/login")
+  public Object login(@Valid @RequestBody UserLoginBO userBO) throws Exception {
+    Users user = userService.queryUserForLogin(
+      userBO.getUsername(),
+      userBO.getPassword()
+    );
+    if (user == null) {
+      throw new FoodieException(FoodieExceptionEnum.USERNAME_OR_PASSWORD_ERROR);
+    }
     return JSONResult.success(user);
   }
 }

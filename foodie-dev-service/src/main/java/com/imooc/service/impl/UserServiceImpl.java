@@ -32,9 +32,7 @@ public class UserServiceImpl implements UserService {
     Example.Criteria criteria = example.createCriteria();
 
     criteria.andEqualTo("username", username);
-
     Users user = usersMapper.selectOneByExample(example);
-
     return user != null;
   }
 
@@ -70,5 +68,17 @@ public class UserServiceImpl implements UserService {
     user = usersMapper.selectByPrimaryKey(id);
 
     return user;
+  }
+
+  @Override
+  public Users queryUserForLogin(String username, String password)
+    throws Exception {
+    String encryptedPwd = MD5Utils.getMD5Str(password);
+    Example example = new Example(Users.class);
+
+    Example.Criteria criteria = example.createCriteria();
+    criteria.andEqualTo("username", username);
+    criteria.andEqualTo("password", encryptedPwd);
+    return usersMapper.selectOneByExample(example);
   }
 }

@@ -11,7 +11,8 @@ public enum FoodieExceptionEnum {
   NEED_USER_NAME(10000, FoodieExceptionEnum.NEED_USER_NAME_MSG),
   USER_NOT_EXIST(10001, FoodieExceptionEnum.USER_NOT_EXIST_MSG),
   PASSWORD_NOT_EQUAL(10002, "两次密码不一致"),
-  USER_EXIST(10003, "用户已存在");
+  USER_EXIST(10003, "用户已存在"),
+  USERNAME_OR_PASSWORD_ERROR(10004, "用户名或密码错误");
 
   public static final String USER_NOT_EXIST_MSG = "用户不存在";
   public static final String NEED_USER_NAME_MSG = "用户名不能为空";
